@@ -132,6 +132,16 @@ export async function gitTagVersion(tagName, sha, execaOpts) {
 }
 
 /**
+ * Merge branches in the current git repository
+ *
+ * @param {String} branchName The branch name to merge into the current branch
+ * @param {Object} [execaOpts] Options to pass to `execa`.
+ */
+export async function gitMerge(branchName, execaOpts) {
+  await execa('git', ['merge', branchName, '-m', 'merged'], execaOpts);
+}
+
+/**
  * Create a shallow clone of a git repository and change the current working directory to the cloned repository root.
  * The shallow will contain a limited number of commit and no tags.
  *
